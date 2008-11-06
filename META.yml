@@ -8,4 +8,4 @@ no_index:
   directory:
     - html
     - inc
-version: 0.01
+version: 0.02
