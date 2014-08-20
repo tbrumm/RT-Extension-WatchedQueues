@@ -1,0 +1,16 @@
+<%INIT>
+my $request_path = $HTML::Mason::Commands::r->path_info;
+    if ( $request_path =~ m{^/Admin/Users} ) {
+        if ( $DECODED_ARGS->{'id'} && $DECODED_ARGS->{'id'} =~ /^\d+$/ ) {
+            my $id = $DECODED_ARGS->{'id'};
+            my $obj = RT::User->new( $session{'CurrentUser'} );
+            $obj->Load($id);
+
+            if ( $obj and $obj->id ) {
+                my $tabs = PageMenu();
+                $tabs->child( 'watchedqueue' => title => loc('Watched Queues'), path => "/Admin/Users/WatchedQueues.html?id=" . $id );
+
+                }
+            }
+        }
+</%INIT>
